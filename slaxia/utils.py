@@ -87,7 +87,7 @@ def filer_files(dir_content):
 slack_dirs = dispatch_slackpath()
 
 
-def _handle_nonexists_dirs(system):
-    if not slack_dirs or all([not slack_dir.exists() for slack_dir in slack_dirs]):
-        print(f"ERROR: Unsupported system: {system}")
-        sys.exit(1)
+def crc(data):
+    # converts a variable-length string into an 8-character string that is a text representation of the hexadecimal value of a 32 bit-binary sequence.
+    crc = binascii.crc32(data)
+    return struct.pack(PACK_FORMAT, crc)
