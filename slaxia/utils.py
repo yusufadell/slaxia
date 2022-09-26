@@ -77,6 +77,12 @@ def filer_files(dir_content):
     return [f for f in dir_content if f.is_file()]
 
 
+def is_empty_dir(paths: Path):
+    # for path in path:
+    #     if path.
+    ...
+
+
 def patch_file(file):
     cached_static_file_data = b""
     js_compiled_response = file.read_bytes()
