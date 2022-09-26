@@ -18,6 +18,7 @@ def dispatch_slackpath(
     full_app_path = application_path(system)
     paths = [Path(full_app_path) / slack_dir for slack_dir in slack_dirs]
     _ = lambda: paths
+    _handle_nonexists_dirs(paths)
 
     print(f"=> Searching for Slack dir cache storage: {paths[0]}\n")
     return {
@@ -25,12 +26,35 @@ def dispatch_slackpath(
         "linux": _,
         "macOS": _,
         "darwin": _,
+    }.get(system, _handle_nonexists_dirs(paths))()
+
 
 def application_path(system):
     return get_env_var("APPDATA") if system == "windows" else get_env_var("HOME")
 
-    full_app_dir = (
-        get_app_dir("APPDATA") if system == "windows" else get_app_dir("HOME")
+
+def _handle_nonexists_dirs(slack_absolute_paths):
+    if not is_valid_paths(slack_absolute_paths):
+        raise PathDoesNotExists(
+            f"Given Slack paths doesn't exists: {slack_absolute_paths} \
+            >>> Try to install Slack first!"
+        )
+
+
+def is_valid_paths(paths, path=None):
+    if path:
+        is_valid_path()
+    _valild = [path.exists() for path in paths]
+    return any(_valild)
+
+
+def is_valid_path(path):
+    return path.exists()
+
+
+class PathDoesNotExists(Exception):
+    pass
+
     )
 
     get_full_path = lambda: [Path(full_app_dir) / slack_dir for slack_dir in slack_dirs]
