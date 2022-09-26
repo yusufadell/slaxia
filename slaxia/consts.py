@@ -1,7 +1,7 @@
 import os
 import platform
 
-get_app_dir = os.environ.get
+get_env_var = os.environ.get
 system = platform.system().lower()
 
 
