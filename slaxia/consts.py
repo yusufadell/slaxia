@@ -6,7 +6,7 @@ system = platform.system().lower()
 
 
 DELETED_MESSAGE = b"message_deleted"
-MESSAGE_DELETED_REP = b"zrffntr_qryrgrq"
+CHYPHERED_DELETED_MESSAGE = b"zrffntr_qryrgrq"
 
 
 import binascii
