@@ -74,6 +74,22 @@ def filer_files(dir_content):
     return [f for f in dir_content if f.is_file()]
 
     )
+def identify_header_metadata(js_compiled_response):
+    # Code Cache File: header, js file path, js data, magic type?, js data size, js crc, request
+    offset_js_data_start_index = get_start_index_offset(js_compiled_response)
+    cache_file_header = js_compiled_response[:offset_js_data_start_index]
+    (
+        cache_file_header_and_data,
+        cache_file_metadata_and_request,
+    ) = extract_header_metadata(js_compiled_response)
+
+    js_compiled_response = insert_identifyer(
+        offset_js_data_start_index, cache_file_header_and_data
+    )
+
+    return js_compiled_response, cache_file_header, cache_file_metadata_and_request
+
+
 def insert_identifyer(offset_js_data_start_index, cache_file_header_and_data):
     return cache_file_header_and_data[offset_js_data_start_index:] + IDENTIFYER
 
