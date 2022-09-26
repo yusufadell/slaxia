@@ -8,7 +8,7 @@ system = platform.system().lower()
 DELETED_MESSAGE = b"message_deleted"
 CHYPHERED_DELETED_MESSAGE = b"zrffntr_qryrgrq"
 
-
+PACK_FORMAT = "<I"
 import binascii
 
 # adding '=>' to make it more unique
