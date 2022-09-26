@@ -73,7 +73,27 @@ def get_dir_content(slack_dirs):
 def filer_files(dir_content):
     return [f for f in dir_content if f.is_file()]
 
+def _handle_file_patching(js_compiled_response):
+    print(f"[-] Patching file: {js_compiled_response}")
+    (
+        js_compiled_response,
+        cache_file_header,
+        cache_file_metadata_and_request,
+    ) = identify_header_metadata(js_compiled_response)
+    patched_static_file_deleted_message_ignored, updated_CRC = recalculate_CRC(
+        js_compiled_response
     )
+    final_static_file = (
+        cache_file_header,
+        patched_static_file_deleted_message_ignored,
+        JS_FILE_TYPE_MAGIC,
+        cache_file_metadata_and_request[:8],
+        updated_CRC,
+        cache_file_metadata_and_request[12:],
+    )
+    return final_static_file
+
+
 def identify_header_metadata(js_compiled_response):
     # Code Cache File: header, js file path, js data, magic type?, js data size, js crc, request
     offset_js_data_start_index = get_start_index_offset(js_compiled_response)
