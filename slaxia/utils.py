@@ -55,6 +55,24 @@ def is_valid_path(path):
 class PathDoesNotExists(Exception):
     pass
 
+
+def _handle_dir_content(slack_dirs):
+    print(f"[-] Searching for JS code cache files")
+    dir_content = get_dir_content(slack_dirs)
+    files = filer_files(dir_content)
+    return files
+
+
+def get_dir_content(slack_dirs):
+    dir_content = []
+    for slack_dir in slack_dirs:
+        dir_content += slack_dir.glob("**/*")
+    return dir_content
+
+
+def filer_files(dir_content):
+    return [f for f in dir_content if f.is_file()]
+
     )
 
     get_full_path = lambda: [Path(full_app_dir) / slack_dir for slack_dir in slack_dirs]
