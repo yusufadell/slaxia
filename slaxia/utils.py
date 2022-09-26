@@ -1,12 +1,15 @@
-import sys
+import binascii
+import struct
 from pathlib import Path
 
 from consts import (
-    DARWIN_SLACK_DIRS,
-    UNIX_SLACK_DIRS,
-    WINDOWS_SLACK_DIRS,
-    get_app_dir,
-    system,
+    CHYPHERED_DELETED_MESSAGE,
+    DELETED_MESSAGE,
+    IDENTIFYER,
+    JS_FILE_TYPE_MAGIC,
+    PACK_FORMAT,
+    UNIQUE_IDENTIFYER,
+    get_env_var,
 )
 
 
