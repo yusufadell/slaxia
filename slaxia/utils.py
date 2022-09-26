@@ -15,7 +15,7 @@ def dispatch_slackpath(
     slack_dirs,
 ):
 
-    print("[-] Searching for Slack dir cache storage")
+    full_app_path = application_path(system)
     paths = [Path(full_app_path) / slack_dir for slack_dir in slack_dirs]
     _ = lambda: paths
 
@@ -26,6 +26,8 @@ def dispatch_slackpath(
         "macOS": _,
         "darwin": _,
 
+def application_path(system):
+    return get_env_var("APPDATA") if system == "windows" else get_env_var("HOME")
 
     full_app_dir = (
         get_app_dir("APPDATA") if system == "windows" else get_app_dir("HOME")
