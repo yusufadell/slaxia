@@ -75,13 +75,15 @@ def filer_files(dir_content):
 
     )
 
-    get_full_path = lambda: [Path(full_app_dir) / slack_dir for slack_dir in slack_dirs]
-    return {
-        "windows": get_full_path,
-        "linux": get_full_path,
-        "macOS": get_full_path,
-        "darwin": get_full_path,
-    }.get(system, _handle_nonexists_dirs(system))()
+
+def recalculate_CRC(js_compiled_response):
+    # replace deleted_message parameter so it be ignored by js script
+    patched_static_file_deleted_message_ignored = ignore_deleted_message_parameter(
+        js_compiled_response
+    )
+    # re-calculate the CRC32 for patched static js file
+    updated_CRC = crc(patched_static_file_deleted_message_ignored)
+    return patched_static_file_deleted_message_ignored, updated_CRC
 
 
 def ignore_deleted_message_parameter(js_compiled_response):
