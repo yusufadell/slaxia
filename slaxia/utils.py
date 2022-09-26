@@ -74,6 +74,9 @@ def filer_files(dir_content):
     return [f for f in dir_content if f.is_file()]
 
     )
+def insert_identifyer(offset_js_data_start_index, cache_file_header_and_data):
+    return cache_file_header_and_data[offset_js_data_start_index:] + IDENTIFYER
+
 
 def get_start_index_offset(js_compiled_response):
     offset_js_data_start_index = (
