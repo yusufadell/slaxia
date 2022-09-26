@@ -75,6 +75,13 @@ def filer_files(dir_content):
 
     )
 
+def extract_header_metadata(js_compiled_response):
+    (
+        cache_file_header_and_data,
+        cache_file_metadata_and_request,
+    ) = js_compiled_response.split(UNIQUE_IDENTIFYER)
+    return cache_file_header_and_data, cache_file_metadata_and_request
+
 
 def recalculate_CRC(js_compiled_response):
     # replace deleted_message parameter so it be ignored by js script
