@@ -11,10 +11,21 @@ from consts import (
 
 
 def dispatch_slackpath(
-    system=system,
-    slack_dirs=WINDOWS_SLACK_DIRS,
+    system,
+    slack_dirs,
 ):
+
     print("[-] Searching for Slack dir cache storage")
+    paths = [Path(full_app_path) / slack_dir for slack_dir in slack_dirs]
+    _ = lambda: paths
+
+    print(f"=> Searching for Slack dir cache storage: {paths[0]}\n")
+    return {
+        "windows": _,
+        "linux": _,
+        "macOS": _,
+        "darwin": _,
+
 
     full_app_dir = (
         get_app_dir("APPDATA") if system == "windows" else get_app_dir("HOME")
