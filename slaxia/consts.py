@@ -22,6 +22,6 @@ UNIX_SLACK_DIRS = [
 ]
 
 DARWIN_SLACK_DIRS = [
-    "Containers/com.tinyspeck.slackmacgap/Data/Library/Application Support/Slack",
-    "Application Support/Slack/Service Worker/CacheStorage",
+    "Library/Containers/com.tinyspeck.slackmacgap/Data/Library/Application Support/Slack",
+    "Library/Application Support/Slack/Service Worker/CacheStorage",
 ]
