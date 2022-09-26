@@ -73,6 +73,11 @@ def get_dir_content(slack_dirs):
 def filer_files(dir_content):
     return [f for f in dir_content if f.is_file()]
 
+
+def is_deteled_message(js_compiled_response):
+    return DELETED_MESSAGE in js_compiled_response
+
+
 def _handle_file_patching(js_compiled_response):
     print(f"[-] Patching file: {js_compiled_response}")
     (
