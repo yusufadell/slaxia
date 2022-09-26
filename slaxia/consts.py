@@ -11,8 +11,11 @@ MESSAGE_DELETED_REP = b"zrffntr_qryrgrq"
 
 import binascii
 
-JS_FILE_TYPE_MAGIC = binascii.unhexlify("D8410D97")  # D8 41 0D 97
+# adding '=>' to make it more unique
+IDENTIFYER = b");"
+JS_FILE_TYPE_MAGIC = binascii.unhexlify("D8410D97")  # "2EENlw=="  # D8 41 0D 97
 
+UNIQUE_IDENTIFYER = IDENTIFYER + JS_FILE_TYPE_MAGIC
 
 WINDOWS_SLACK_DIRS = [
     "Slack",
