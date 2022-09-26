@@ -2,7 +2,7 @@ import os
 import platform
 
 get_app_dir = os.environ.get
-system = platform.system.lower() or "windows"
+system = platform.system().lower()
 
 
 MESSAGE_DELETED = "message_deleted"
