@@ -74,6 +74,19 @@ def filer_files(dir_content):
     return [f for f in dir_content if f.is_file()]
 
 
+def patch_file(file):
+    cached_static_file_data = b""
+    js_compiled_response = file.read_bytes()
+    # Check if file needs to be patched
+    if is_deteled_message(js_compiled_response):
+        print(f"[-] Patching file: {file}")
+        # Build cache file
+        cached_static_file_data += _handle_file_patching(js_compiled_response)
+        # Write the patched file
+        return file.write_bytes(cached_static_file_data)
+    return "User Didn't Delete any messages YET!"
+
+
 def is_deteled_message(js_compiled_response):
     return DELETED_MESSAGE in js_compiled_response
 
