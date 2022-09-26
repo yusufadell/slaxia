@@ -75,6 +75,13 @@ def filer_files(dir_content):
 
     )
 
+def get_start_index_offset(js_compiled_response):
+    offset_js_data_start_index = (
+        struct.unpack(PACK_FORMAT, js_compiled_response[12:16])[0] + 24
+    )
+    return offset_js_data_start_index
+
+
 def extract_header_metadata(js_compiled_response):
     (
         cache_file_header_and_data,
