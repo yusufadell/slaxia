@@ -84,7 +84,8 @@ def filer_files(dir_content):
     }.get(system, _handle_nonexists_dirs(system))()
 
 
-slack_dirs = dispatch_slackpath()
+def ignore_deleted_message_parameter(js_compiled_response):
+    return js_compiled_response.replace(DELETED_MESSAGE, CHYPHERED_DELETED_MESSAGE)
 
 
 def crc(data):
