@@ -5,7 +5,7 @@ get_env_var = os.environ.get
 system = platform.system().lower()
 
 
-MESSAGE_DELETED = "message_deleted"
+DELETED_MESSAGE = b"message_deleted"
 MESSAGE_DELETED_REP = b"zrffntr_qryrgrq"
 
 
